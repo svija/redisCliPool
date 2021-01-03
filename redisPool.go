@@ -57,7 +57,7 @@ func InitRedisPool(conf *goconf.ConfigFile) {
 	return
 }
 
-func InitPool(redisServer string,redisPassword string,maxIdle int,) {
+func InitPool(redisServer string,redisPassword string,maxIdle int,maxActive  int) {
 	redisServer, _ = conf.GetString("redisPool", "redis_server")
 	redisPassword, _ = conf.GetString("redisPool", "redis_password")
 	maxIdle, _ = conf.GetInt("redisPool", "maxIdle")
