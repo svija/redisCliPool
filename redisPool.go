@@ -57,6 +57,17 @@ func InitRedisPool(conf *goconf.ConfigFile) {
 	return
 }
 
+func InitPool(redisServer string,redisPassword string,maxIdle int,) {
+	redisServer, _ = conf.GetString("redisPool", "redis_server")
+	redisPassword, _ = conf.GetString("redisPool", "redis_password")
+	maxIdle, _ = conf.GetInt("redisPool", "maxIdle")
+	maxActive, _ = conf.GetInt("redisPool", "maxActive")
+	//idleTimeout, _ = conf.GetInt("redisPool", "idleTimeout")
+	Clipool = newPool(redisServer, redisPassword)
+
+	return
+}
+
 func String(reply interface{}, err1 error) (value string, err2 error) {
 	value, err2 = redis.String(reply, err1)
 	return
